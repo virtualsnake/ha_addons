@@ -8,6 +8,7 @@ declare -a options
 bashio::net.wait_for 80
 
 options+=(-c /etc/mosquitto/mosquitto.conf)
+options+=(--tls-keylog /share/ssl-secrets.log)
 
 if bashio::debug; then
   options+=(-v)
