@@ -43,10 +43,8 @@ RUN apt-get update \
     && git clone https://github.com/eclipse/mosquitto.git \
     && cd mosquitto \
     && git checkout develop \
-    && cd src \
-    && make \
-    && cp -f mosquitto /usr/sbin/mosquitto \
-    && cd ../.. \
+    && make install \
+    && cd .. \
     \
     && apt-get purge -y --auto-remove \
         build-essential \
