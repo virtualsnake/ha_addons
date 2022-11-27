@@ -1,6 +1,6 @@
 ---
 version: 6.1.3
-slug: mosquitto
+slug: mosquitto_with_ssl
 name: Mosquitto broker with SSL secrets
 description: An Open Source MQTT broker
 url: https://github.com/virtualsnake/ha_addons/tree/master/mosquitto
