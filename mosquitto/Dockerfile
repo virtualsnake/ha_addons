@@ -16,9 +16,20 @@ RUN apt-get update \
         openssl \
         libssl-dev \
         golang-go \
+        docbook-xsl \
+        libc-ares-dev \
+        libcjson-dev \
+        libcjson1 \
+        libcunit1-dev \
+        libssl-dev \
+        libwrap0-dev \
+        microsocks \
+        python-all \
+        python3-all \
+        xsltproc git make gcc g++ libsqlite3-dev \
     \
     && git clone --depth 1 -b "${MOSQUITTO_AUTH_VERSION}" \
-       https://github.com/iegomez/mosquitto-go-auth \
+        https://github.com/iegomez/mosquitto-go-auth \
     \
     && cd mosquitto-go-auth \
     && sed -i 's/-I\/usr\/local\/include/-I\/usr\/include/' Makefile \
@@ -27,6 +38,15 @@ RUN apt-get update \
     && mkdir -p /usr/share/mosquitto \
     && cp -f go-auth.so /usr/share/mosquitto \
     && cp -f pw /usr/local/bin \
+    && cd .. \
+    \
+    && git clone https://github.com/eclipse/mosquitto.git \
+    && cd mosquitto \
+    && git checkout develop \
+    && cd src \
+    && make \
+    && cp -f mosquitto /usr/sbin/mosquitto \
+    && cd ../.. \
     \
     && apt-get purge -y --auto-remove \
         build-essential \
@@ -35,6 +55,17 @@ RUN apt-get update \
         libmosquitto-dev \
         libssl-dev \
         golang-go \
+        docbook-xsl \
+        libc-ares-dev \
+        libcjson-dev \
+        libcjson1 \
+        libcunit1-dev \
+        libssl-dev \
+        libwrap0-dev \
+        microsocks \
+        python-all \
+        python3-all \
+        xsltproc git make gcc g++ libsqlite3-dev \
     && apt-get clean \
     && rm -fr \
         /etc/logrotate.d \
@@ -45,8 +76,8 @@ RUN apt-get update \
         /var/lib/nginx/html \
         /var/www \
         /var/lib/apt/lists/* \
-	/root/.cache \
-	/root/go
+        /root/.cache \
+        /root/go
 
 # Copy rootfs
 COPY rootfs /
