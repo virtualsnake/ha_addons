@@ -55,8 +55,6 @@ RUN apt-get update \
         golang-go \
         docbook-xsl \
         libc-ares-dev \
-        libcjson-dev \
-        libcjson1 \
         libcunit1-dev \
         libssl-dev \
         libwrap0-dev \
