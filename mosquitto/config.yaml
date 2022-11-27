@@ -16,7 +16,7 @@ discovery:
   - mqtt
 map:
   - ssl
-  - share
+  - share:rw
 options:
   logins: []
   require_certificate: false
